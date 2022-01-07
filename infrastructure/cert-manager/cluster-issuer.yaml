@@ -1,0 +1,17 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: cert-manager-client-issuer
+  namespace: cert-manager
+spec:
+  dependsOn:
+    - name: cert-manager
+  interval: 10m0s
+  path: ./infrastructure/cert-manager/cluster-issuer
+  prune: true
+  validation: client
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
