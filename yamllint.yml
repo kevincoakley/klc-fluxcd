@@ -1,0 +1,9 @@
+---
+extends: default
+ignore: |
+  /clusters/production/flux-system/
+rules:
+  line-length: disable
+  truthy:
+    ignore: |
+      .github/workflows/
