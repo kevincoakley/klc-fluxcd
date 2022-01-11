@@ -1,0 +1,33 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: prom
+spec:
+  values:
+    grafana:
+      admin:
+        existingSecret: grafana-admin-password
+        userKey: admin-user
+        passwordKey: admin-password
+      ingress:
+        hosts:
+          - grafana.sdsc.k117.org
+        tls:
+          - hosts:
+              - grafana.sdsc.k117.org
+            secretName: grafana-tls
+    prometheus:
+      ingress:
+        hosts:
+          - prom.sdsc.k117.org
+        tls:
+          - hosts:
+              - prom.sdsc.k117.org
+            secretName: prom-tls
+      prometheusSpec:
+        additionalScrapeConfigs:
+          - job_name: 'twitter'
+            static_configs:
+              - targets: ['twitter-stream-archive-service.twitter-stream-archive.svc.cluster.local:8000']

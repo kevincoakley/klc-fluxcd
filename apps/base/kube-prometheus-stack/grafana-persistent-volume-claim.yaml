@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prom-grafana
+  namespace: prom
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: grafana
+  volumeMode: Filesystem
+  volumeName: pvc-prom-grafana-0
+status:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 10Gi

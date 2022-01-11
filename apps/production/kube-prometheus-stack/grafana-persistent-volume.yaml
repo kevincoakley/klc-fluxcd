@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pvc-prom-grafana-0
+spec:
+  csi:
+    driver: cinder.csi.openstack.org
+    fsType: ext3
+    volumeHandle: b98a2233-a12c-4835-8db7-9f7371495a21
