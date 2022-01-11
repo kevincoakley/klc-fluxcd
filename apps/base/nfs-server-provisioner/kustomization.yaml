@@ -1,0 +1,9 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: nfs-server-provisioner
+resources:
+  - source.yaml
+  - namespace.yaml
+  - nfs-data-persistent-volume.yaml
+  - release.yaml

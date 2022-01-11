@@ -1,0 +1,27 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nfs-server-provisioner
+  namespace: nfs-server-provisioner
+spec:
+  releaseName: nfs-server-provisioner
+  chart:
+    spec:
+      chart: nfs-server-provisioner
+      sourceRef:
+        kind: HelmRepository
+        name: nfs-ganesha-server-and-external-provisioner
+        namespace: nfs-server-provisioner
+  interval: 5m
+  install:
+    remediation:
+      retries: 3
+  # Default values
+  # https://github.com/kubernetes-sigs/nfs-ganesha-server-and-external-provisioner/blob/master/charts/nfs-server-provisioner/values.yaml
+  values:
+    persistence:
+      enabled: true
+      storageClass: "-"
+    rbac:
+      create: true

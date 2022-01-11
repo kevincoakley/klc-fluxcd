@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: data-nfs-server-provisioner-0
+spec:
+  capacity:
+    storage: 250Gi
+  csi:
+    driver: cinder.csi.openstack.org
+    fsType: ext4
+    volumeHandle: 99a54967-2dcd-4e60-a153-46a2d3856557
