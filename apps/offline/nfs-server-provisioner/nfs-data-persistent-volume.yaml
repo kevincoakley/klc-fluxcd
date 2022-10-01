@@ -4,14 +4,9 @@ kind: PersistentVolume
 metadata:
   name: data-nfs-server-provisioner-0
 spec:
-  storageClassName: cinder
   capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteOnce
-  # Replace the namespace with the namespace the nfs-server-provisioner Helm Chart will be deployed in and replace the
-  # name with the name of the nfs-server-provisioner PersistentVolumeClaim, if you named the Helm Chart nfs-server-provisioner
-  # then the PVC will be named data-nfs-server-provisioner-0
-  claimRef:
-    namespace: nfs-server-provisioner
-    name: data-nfs-server-provisioner-0
+    storage: 250Gi
+  csi:
+    driver: cinder.csi.openstack.org
+    fsType: ext4
+    volumeHandle: 99a54967-2dcd-4e60-a153-46a2d3856557
